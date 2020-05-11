@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    service: feed
+  name: feed
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        service: feed
+    spec:
+      containers:
+      - image: mskang135/udagram-feed
+        name: feed
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m" 
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always
